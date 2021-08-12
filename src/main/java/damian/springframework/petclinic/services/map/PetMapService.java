@@ -1,10 +1,11 @@
 package damian.springframework.petclinic.services.map;
 import damian.springframework.petclinic.model.Pet;
 import damian.springframework.petclinic.services.CrudService;
+import damian.springframework.petclinic.services.PetService;
 
 import java.util.Set;
 
-public class PetMapService extends AbstractMapService<Pet,Long> implements CrudService<Pet,Long> {
+public class PetMapService extends AbstractMapService<Pet,Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
         return super.findAll();
