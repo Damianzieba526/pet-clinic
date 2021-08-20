@@ -1,13 +1,21 @@
 package damian.springframework.petclinic.services.map;
 
+import damian.springframework.petclinic.model.Speciality;
 import damian.springframework.petclinic.model.Vet;
+import damian.springframework.petclinic.services.SpecialityService;
 import damian.springframework.petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
     public class VetMapService extends AbstractMapService<Vet,Long> implements VetService {
-        @Override
+    private final SpecialityService specialityService;
+
+    public VetMapService(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
+
+    @Override
         public Set<Vet> findAll() {
             return super.findAll();
         }
@@ -19,6 +27,15 @@ import java.util.Set;
 
         @Override
         public Vet save(Vet object) {
+            if (object.getSpecialities().size() > 0){
+                object.getSpecialities().forEach(speciality ->{
+                    if (speciality.getId() == null){
+                        Speciality savedSpeciality = specialityService.save(speciality);
+                        speciality.setId(savedSpeciality.getId());
+
+                    }
+                });
+            }
             return super.save(object);
         }
 

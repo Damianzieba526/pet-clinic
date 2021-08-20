@@ -1,12 +1,12 @@
 package damian.springframework.petclinic.services.map;
 
 import damian.springframework.petclinic.model.Speciality;
-import damian.springframework.petclinic.services.SpecialitiesService;
+import damian.springframework.petclinic.services.SpecialityService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
-public class SpecialitiesMapService extends AbstractMapService<Speciality, Long> implements SpecialitiesService {
+public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
         return super.findAll();
