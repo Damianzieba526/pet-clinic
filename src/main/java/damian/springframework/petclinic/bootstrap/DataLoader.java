@@ -1,10 +1,7 @@
 package damian.springframework.petclinic.bootstrap;
 
 import damian.springframework.petclinic.model.*;
-import damian.springframework.petclinic.services.OwnerService;
-import damian.springframework.petclinic.services.PetTypeService;
-import damian.springframework.petclinic.services.SpecialityService;
-import damian.springframework.petclinic.services.VetService;
+import damian.springframework.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +13,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialitiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialitiesService, VisitService visitService) {
 
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialitiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -71,7 +70,14 @@ public class DataLoader implements CommandLineRunner {
         krystiansPet.setBirthDate(LocalDate.now());
         krystiansPet.setName("Tino");
         owner1.getPets().add(krystiansPet);
+
         ownerService.save(owner1);
+
+        Visit visit1 = new Visit();
+        visit1.setDate(LocalDate.now());
+        visit1.setDescription("Broken leg");
+        visit1.setPet(krystiansPet);
+        visitService.save(visit1);
 
 
         Owner owner2 = new Owner();
@@ -88,6 +94,12 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(franksPet);
 
         ownerService.save(owner2);
+
+        Visit visit2 = new Visit();
+        visit2.setDate(LocalDate.now());
+        visit2.setDescription("Problem with tail");
+        visit2.setPet(franksPet);
+        visitService.save(visit2);
 
         System.out.println("Loaded owners");
 

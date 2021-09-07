@@ -2,10 +2,11 @@ package damian.springframework.petclinic.services.map;
 
 import damian.springframework.petclinic.model.Visit;
 import damian.springframework.petclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
 
