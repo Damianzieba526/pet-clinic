@@ -2,7 +2,6 @@ package damian.springframework.petclinic.services.map;
 
 import damian.springframework.petclinic.model.Owner;
 import damian.springframework.petclinic.model.Pet;
-import damian.springframework.petclinic.model.PetType;
 import damian.springframework.petclinic.services.OwnerService;
 import damian.springframework.petclinic.services.PetService;
 import damian.springframework.petclinic.services.PetTypeService;
